@@ -36,7 +36,6 @@ public class SW_2117_홈방범서비스 {
 					que.add(new Point(i, j));
 					v[i][j] = 1;
 					bfs(i, j);
-					
 				}
 			}
 			
@@ -68,7 +67,7 @@ public class SW_2117_홈방범서비스 {
 				}
 				if(i==size-1) {	// 마지막 까지 왔으면 보안회사 이익 계산.
 					int profit = ((house_num * M) - ((K*K)+((K-1)*(K-1))));
-					if(profit>0) {
+					if(profit>=0) { // "손해 보지 않는 한" 이므로 보안회사 이익이 마이너스만 아니면 됨.
 						if(ans<house_num) ans = house_num;
 					}
 				}
