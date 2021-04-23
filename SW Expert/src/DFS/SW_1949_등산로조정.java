@@ -43,7 +43,8 @@ public class SW_1949_등산로조정 {
 					}
 				}
 			}
-
+			
+			/* 가장 높은 봉우리들 dfs */
 			for (int i = 0; i < blist.size(); i++) {
 				int r = blist.get(i).r;
 				int c = blist.get(i).c;
@@ -64,21 +65,17 @@ public class SW_1949_등산로조정 {
 
 			if (nr < 0 || nr >= N || nc < 0 || nc >= N || v[nr][nc])
 				continue;
-			if (map[nr][nc] < map[r][c]) {
-
+			if (map[nr][nc] < map[r][c]) { // 현재 봉우리보다 다음 봉우리가 낮은 경우 바로 이동 
 				dfs(nr, nc, trim, distance + 1);
-			} else if (!trim) {
-				for (int j = 1; j <= K; j++) {
-					if (map[nr][nc] - j < map[r][c]) { // 깎을 곳이 있고
-
-						int h = map[nr][nc];
+			} else if (!trim) {  
+				for (int j = 1; j <= K; j++) {// 최대 공사 가능 깊이가 K 이므로 하나씩 검사해서 비교.
+					if (map[nr][nc] - j < map[r][c]) {
 						map[nr][nc] = map[nr][nc] - j;
 						dfs(nr, nc, true, distance + 1);
 						map[nr][nc] = map[nr][nc] + j;
 					}
 				}
 			}
-
 		}
 		v[r][c] = false;
 
